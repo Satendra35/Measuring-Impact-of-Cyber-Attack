@@ -1,0 +1,2 @@
+# Measuring-Impact-of-Cyber-Attack
+I have created this because it was my first project in ACCS Research and Development Internship which was given the conducter of the internship for completing my internship. I have Research about it but cannot find any thing on the internet about or related to this, and the time is runnig out , it is almost 8 hour left for me to submit my report with working of program. And then I recall my researches and then i get an idea of CVSS calculator, I search everything and get the knowlegde about it.  
