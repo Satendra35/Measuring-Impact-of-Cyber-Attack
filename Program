@@ -1,0 +1,123 @@
+def CVSS():
+    print("Exploitability Metrics -")
+    print("\n")
+    print("Choose Attack Vector (AV) ")
+    print("1. Network 2.Adjacent 3.Local 4. Physical ")
+    AV = input()
+    if(AV == 'Network' or AV == 'network'):
+        AV_value = 0.85
+    elif(AV == 'Adjacent' or AV == 'adjacent'):
+        AV_value = 0.62
+    elif(AV == 'Local' or AV == 'local'):
+        AV_value = 0.55    
+    elif(AV == 'Physical' or AV == 'physical'):
+        AV_value = 0.62
+
+    print("Attack Complexity (AC)")
+    print("1.Low 2.High ")
+    AC = input()
+    if(AC == 'Low' or AC == 'low'):
+        AC_value = 0.77
+    elif(AC == 'High' or AC == 'high'):
+        AC_value = 0.44
+
+    print("Privileges Required (PR)")
+    print("1.None 2.Low 3.High")
+    PR = input()
+    if(PR == 'None' or PR == 'none'):
+        PR_value = 0.85
+    elif(PR == 'Low' or PR == 'low'):
+        PR_value = 0.62
+    elif(PR == 'High' or PR == 'high'):
+        PR_value = 0.27
+
+    print("User Interaction (UI)")
+    print("1.None 2.Required")
+    UI = input()
+    if(UI == 'None' or UI == 'none'):
+        UI_value = 0.85
+    elif(UI == 'Required' or UI == 'required'):
+        UI_value = 0.62
+
+    print("Scope (S)")
+    print("1.Changed 2.Unchanged")
+    S = input()
+
+    print("Impact Metrics -")
+    print("\n")
+
+    print("Confidentiality (C)")
+    print("1.None 2.Low 3.High")
+    C = input()
+    if(C == 'None' or C == 'none'):
+        C_value = 0.0
+    elif(C == 'Low' or C == 'low'):
+        C_value = 0.22
+    elif(C == 'High' or C == 'high'):
+        C_value = 0.56
+
+    print("Integrity (I)")
+    print("1.None 2.Low 3.High")
+    I = input()
+    if(I == 'None' or I == 'none'):
+        I_value = 0.0
+    elif(I == 'Low' or I == 'low'):
+        I_value = 0.22
+    elif(I == 'High' or I == 'high'):
+        I_value = 0.56
+
+    print("Availability (A)")
+    print("1.None 2.Low 3.High")
+    A = input()
+    if(A == 'None' or A == 'none'):
+        A_value = 0.0
+    elif(A == 'Low' or A == 'low'):
+        A_value = 0.22
+    elif(A == 'High' or A == 'high'):
+        A_value = 0.56
+
+
+
+    print("****************************************")
+
+    print("BASE SCORE (BS)\n")
+   # print(" Impact Sub Score (ISS) ")
+    ISS = 1-((1-C_value)*(1-I_value)*(1-A_value))
+
+    if(S == 'Changed' or S == 'changed'):
+        impact = (7.52*(ISS - 0.029) - 3.25*(pow(ISS-0.02,15)))
+    elif(S == 'Unchanged' or S == 'unchanged'):
+        impact = 6.45 * ISS
+
+
+    Exploit = 8.22*AV_value*AC_value*PR_value*UI_value
+
+    
+    if(S == 'Changed' or S == 'changed'):
+        BS = abs(min(1.08*(impact + Exploit),10))
+    elif(S == 'Unchanged' or S == 'unchanged'):
+        BS = abs(min((impact + Exploit),10))
+
+
+    if(BS == 0):
+        print('None')
+        print(BS)
+    elif(BS >= 0.1 and BS <= 3.9):
+        print('Low')
+        print(BS)
+    elif(BS >= 4 and BS <= 6.9):
+        print('Medium')
+        print(BS)
+    elif(BS >= 7 and BS <= 8.9):
+        print('High')
+        print(BS)
+    else:
+        print('Critical')
+        print(BS)
+    
+    return 0
+
+
+CVSS()
+    
+    
